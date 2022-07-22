@@ -31,29 +31,29 @@ int main()
         int year = 0;
         string company;
         string engineType;
-        float mileage;
+        float mileage = 0.0;
         switch (choice)
         {
         case 0:
             cout << " You made a choice  to create " << userChoice << endl;
             cout << " I will ask you few questions to create your vechicle so you can drive your new vechicle. "
-                "Again think of this like you are at a factory to make a customize vechicle of yours";
+                "Again think of this like you are at a factory to make a customize vechicle of yours ";
             cout << "What name do you intend to give your vechicle ?";
             cin >> name;
             if (name.empty()) {
-                cout << "Huh... perhaps you forgot to give your car a name";
+                cout << "Huh... perhaps you forgot to give your car a name ";
             }
             else {
                 vechicle.SetName(name);
                 cout << "great, now that I know the name you intend to give your vechicle, Let me ask you few more question, What is the Model name ?" << endl;      
                 cin >> model;
                 if (model.empty()) {
-                    cout << "Huh... perhaps you forgot to give us your preferred model";
+                    cout << "Huh... perhaps you forgot to give us your preferred model ";
                 }
                 else {
                     cout << "Cool you have an eye for good model, yah ! do you have a year in mind? "
-                        "if yes press y o your keyboard if o press n on your keyboard."
-                        " Please note if you don't have a year in mind we will use a default one we have";
+                        "if yes press y o your keyboard if o press n on your keyboard. "
+                        " Please note if you don't have a year in mind we will use a default one we have ";
                     cin >> year;
                     if (year == 0) {
                         cout << "Seems you did not specify a year or you specified 0 , we will use the default year for you not to worry";
@@ -77,10 +77,26 @@ int main()
                     else {
                         vechicle.SetFuelType(engineType);
                     }
+                    cout << "Now, We assume that you might preferred a milage, if no mileage is set, "
+                        "then we will go with 0, which means you are getting a new Vechicle." 
+                        << "Enter Mileage"
+                        << endl;
                     cin >> mileage;
-                    vechicle = Vechicle("Abiola", "Model-A", 1999, "Abiola Company", 3, "Gasoline", 0);
-                    cout << "Your choice of product is " << userChoice << endl;
-                    cout << "You also prefered to name it " << vechicle.GetName() << endl;
+                    if (mileage == 0) {
+                        cout << "Seems you did not specify mileage so we gave you a new one";
+                    }
+                    else {
+                        vechicle.SetMillage(mileage);
+                    }
+                   /* vechicle = Vechicle("Abiola", "Model-A", 1999, "Abiola Company", 3, "Gasoline", 0);*/
+                    cout << "We have just create your customised vechicle. Let's go ";
+                    cout << "You also prefered to name it " << vechicle.GetName() << " Model is "
+                        << vechicle.GetModel() 
+                        << " Year is "<< vechicle.GetYear() << " Manufacturer is " 
+                        << vechicle.GetManufacturer()<< " Wheel is "<<vechicle.GetNumberOfWheels()
+                        << " Engine type : "<< vechicle.GetFuelType()
+                        << " Mileage used is " << vechicle.GetMillage()
+                        << endl;
                     vechicle.~Vechicle();
                 }
            
