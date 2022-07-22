@@ -43,5 +43,10 @@ protected:
 		this->Distance = Distance + currentDistance;
 		return this->Distance;
 }
+protected:
+	void StopDrive(bool isStop) {
+		this->Drive(0.0);
+		this->~Vechicle();
+	}
 };
 
