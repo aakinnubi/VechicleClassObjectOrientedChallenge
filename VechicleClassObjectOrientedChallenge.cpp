@@ -2,10 +2,29 @@
 //
 
 #include <iostream>
-
+#include "Vechicle.h"
+#include <unordered_map>
+using namespace std;
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::unordered_map<string, int> vechicleProductChoice;
+    vechicleProductChoice["Vechicle"] =  0;
+    vechicleProductChoice["Car"] = 1;
+    vechicleProductChoice["Airplane"] = 2;
+    vechicleProductChoice["Boat"] = 3;
+    cout << "Hello World!\n";
+    cout << "Welcome to Abk vechicle factory" << endl;
+    cout << "Tell me what you want to create, I will provide you options below. If I understand your commands, I will go ahead and create the product" << endl;
+    string userChoice;
+    cin >> userChoice;
+    
+    do
+    {
+        Vechicle vechicle = Vechicle("Abiola", "Model-A", 1999, "Abiola Company", 3, "Gasoline", 0);
+        cout << "Your choice of product is " << userChoice << endl;
+        cout <<"You also prefered to name it "<< vechicle.GetName() <<endl;
+    } while (vechicleProductChoice.find(userChoice) == vechicleProductChoice.end());
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

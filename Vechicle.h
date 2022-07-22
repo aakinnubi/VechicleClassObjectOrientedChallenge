@@ -13,6 +13,7 @@ protected:
 	string FuelType;
 	float Millage = 0;
 	float Distance = 0;
+public:
 	Vechicle() {
 		cout << "Default Constructor was called with no initialization";
 	 }
@@ -36,6 +37,10 @@ protected:
 	}
 	~Vechicle() {
 
+	}
+public:
+	string GetName() {
+		return Vechicle::Name;
 	}
 protected:
 	float Drive(float currentDistance) {
