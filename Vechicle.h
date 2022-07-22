@@ -10,13 +10,13 @@ protected:
 	int Year = 1990;
 	string Manufacturer;
 	int NumberOfWheels = 4;
-	string FuelType;
+	string FuelType = "Gasoline";
 	float Millage = 0;
 	float Distance = 0;
 public:
 	Vechicle() {
 		cout << "Default Constructor was called with no initialization";
-	 }
+	}
 	Vechicle(string Name, string Model, int Year, string Manufacturer, int NumberOfWheels, string FuelType, float Millage) {
 		this->Name = Name;
 		this->Model = Model;
@@ -38,11 +38,8 @@ public:
 	~Vechicle() {
 
 	}
+
 public:
-	string GetName() {
-		return this->Name;
-	}
-private:
 	void SetName(string Name) {
 		this->Name = Name;
 	}
@@ -58,18 +55,47 @@ private:
 	void SetManufacturer(string Manufacturer) {
 		this->Manufacturer = Manufacturer;
 	}
-public:
-	string GetModel() {
-		this->Model;
+	void SetFuelType(string FuelType) {
+
+	}
+	void  SetMillage(float Millage) {
+		this->Millage = Millage;
+	}
+	void SetDistance(float Distance) {
+		this->Distance = Distance;
 	}
 
+	string GetName() {
+		return this->Name;
+	}
+	string GetModel() {
+		return this->Model;
+	}
+	int GetYear() {
+		return this->Year;
+	}
+	int GetNumberOfWheels() {
+		return this->NumberOfWheels;
+	}
+	string GetManufacturer() {
+		return this->Manufacturer;
+	}
+	string GetFuelType() {
+		return this->FuelType;
+	}
+	float GetMillage() {
+		return this->Millage;
+	}
+	float GetDistance() {
+		return this->Distance;
+	}
 
 protected:
 	float Drive(float currentDistance) {
 		this->Millage = Millage + currentDistance;
 		this->Distance = Distance + currentDistance;
 		return this->Distance;
-}
+	}
 protected:
 	void StopDrive(bool isStop) {
 		this->Drive(0.0);
