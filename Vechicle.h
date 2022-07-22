@@ -40,8 +40,30 @@ public:
 	}
 public:
 	string GetName() {
-		return Vechicle::Name;
+		return this->Name;
 	}
+private:
+	void SetName(string Name) {
+		this->Name = Name;
+	}
+	void SetModel(string Model) {
+		this->Model = Model;
+	}
+	void SetYear(int Year) {
+		this->Year = Year;
+	}
+	void SetNumberOfWheels(int NumberOfWheels) {
+		this->NumberOfWheels = NumberOfWheels;
+	}
+	void SetManufacturer(string Manufacturer) {
+		this->Manufacturer = Manufacturer;
+	}
+public:
+	string GetModel() {
+		this->Model;
+	}
+
+
 protected:
 	float Drive(float currentDistance) {
 		this->Millage = Millage + currentDistance;
