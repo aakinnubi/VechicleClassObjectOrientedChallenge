@@ -4,10 +4,14 @@
 #include <iostream>
 #include "Vechicle.h"
 #include <unordered_map>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <iostream>
 using namespace std;
 //template<typename ClassType>
-//ClassType DidCreateObject(ClassType classType);
-//Vechicle CreateVechicle(string name, string model, int year, string company, int wheels, string fuel, float milleage);
+Vechicle CreateObject(string commaSeparatedString);
+//Vechicle CreateVechicle();
 //string CreateVechicleDiaglogue();
 int main()
 {
@@ -32,13 +36,21 @@ int main()
         string company;
         string engineType;
         float mileage = 0.0;
+        string allAttributesSpecified;
+        Vechicle v = CreateObject("Tesla,Model-Y,2022,Tesla Inc,4,Electric,20");
+        vechicle = v;
         switch (choice)
         {
         case 0:
             cout << " You made a choice  to create " << userChoice << endl;
-            cout << " I will ask you few questions to create your vechicle so you can drive your new vechicle. "
-                "Again think of this like you are at a factory to make a customize vechicle of yours ";
+            cout << "I will ask you few questions to create your vechicle so you can drive your new vechicle. \n"
+                "Again think of this like you are at a factory to make a customize vechicle of yours.\n Please if you prefer to enter all information at once\n"
+                "type for example : Name,Model,Year,Manufacturer,NumberOfWheels,FuelType,Millage"
+                " example: Tesla,Model-Y,2022,Tesla Inc,4,Electric,20 \n"
+                "This will create a new vechicle for you with all the characteristics listed in comma seperated above"
+                << endl;
             cout << "What name do you intend to give your vechicle ?";
+            cin >> allAttributesSpecified;
             cin >> name;
             if (name.empty()) {
                 cout << "Huh... perhaps you forgot to give your car a name ";
@@ -48,15 +60,15 @@ int main()
                 cout << "great, now that I know the name you intend to give your vechicle, Let me ask you few more question, What is the Model name ?" << endl;      
                 cin >> model;
                 if (model.empty()) {
-                    cout << "Huh... perhaps you forgot to give us your preferred model ";
+                    cout << "Huh... perhaps you forgot to give us your preferred model " << endl;
                 }
                 else {
                     cout << "Cool you have an eye for good model, yah ! do you have a year in mind? "
                         "if yes press y o your keyboard if o press n on your keyboard. "
-                        " Please note if you don't have a year in mind we will use a default one we have ";
+                        " Please note if you don't have a year in mind we will use a default one we have " << endl;
                     cin >> year;
                     if (year == 0) {
-                        cout << "Seems you did not specify a year or you specified 0 , we will use the default year for you not to worry";
+                        cout << "Seems you did not specify a year or you specified 0 , we will use the default year for you not to worry" << endl;
                     }
                     else {
                         vechicle.SetYear(year);
@@ -64,7 +76,7 @@ int main()
                     cout << "Next, we need to specify brand or manufacturer or company. nevermind anyone you preferred" << endl;
                     cin >> company;
                     if (company.empty()) {
-                        cout << "Huh... perhaps you forgot to give us your preferred company or brand or manufacturer";
+                        cout << "Huh... perhaps you forgot to give us your preferred company or brand or manufacturer" << endl;
                     }
                     else {
                         vechicle.SetManufacturer(company);
@@ -72,7 +84,7 @@ int main()
                     cout << "Next, we need to We need to collect your engine type, gasoline, hybrid or electric" << endl;
                     cin >> engineType;
                     if (engineType.empty()) {
-                        cout << "Seems you did not specify a so we have set it as gasoline";
+                        cout << "Seems you did not specify a so we have set it as gasoline" << endl;
                     }
                     else {
                         vechicle.SetFuelType(engineType);
@@ -83,7 +95,7 @@ int main()
                         << endl;
                     cin >> mileage;
                     if (mileage == 0) {
-                        cout << "Seems you did not specify mileage so we gave you a new one";
+                        cout << "Seems you did not specify mileage so we gave you a new one" << endl;
                     }
                     else {
                         vechicle.SetMillage(mileage);
@@ -101,9 +113,7 @@ int main()
                 }
            
             }
-          
-            
-          /*  break;*/
+            break;
         default:
             break;
         }
@@ -127,3 +137,22 @@ int main()
 //{
 //    return  Vechicle("Abiola", "Model-A", 1999, "Abiola Company", 3, "Gasoline", 0);
 //}
+
+//template<typename ClassType>
+Vechicle CreateObject(string commaSeparatedString)
+{
+    vector<string> userEntry;
+    stringstream s_stream(commaSeparatedString);
+    while (s_stream.good())
+    {
+        string subString;
+        getline(s_stream, subString, ',');
+        userEntry.push_back(subString);
+    }
+    int parameterSize = size(userEntry);
+    if (parameterSize == 7) {
+        Vechicle v= Vechicle(userEntry[0], userEntry[1], stoi(userEntry[2]), userEntry[3], stoi(userEntry[4]),userEntry[5], stoi(userEntry[6]));
+        return v;
+    }
+    return Vechicle();
+}
