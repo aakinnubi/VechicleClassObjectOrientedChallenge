@@ -39,6 +39,7 @@ int main()
         string allAttributesSpecified;
         Vechicle v = CreateObject("Tesla,Model-Y,2022,Tesla Inc,4,Electric,20");
         vechicle = v;
+        string createAll;
         switch (choice)
         {
         case 0:
@@ -49,69 +50,77 @@ int main()
                 " example: Tesla,Model-Y,2022,Tesla Inc,4,Electric,20 \n"
                 "This will create a new vechicle for you with all the characteristics listed in comma seperated above"
                 << endl;
-            cout << "What name do you intend to give your vechicle ?";
-            cin >> allAttributesSpecified;
-            cin >> name;
-            if (name.empty()) {
-                cout << "Huh... perhaps you forgot to give your car a name ";
+            cout << "Enter A to specify all the attributes of your vechicle at once like this: Tesla,Model-Y,2022,Tesla Inc,4,Electric,20 or enter N to specify it one after the other " << endl;
+            cin >> createAll;
+            if (createAll == "A") {
+                cout << "You entered A" << endl;
+                cin >> allAttributesSpecified;
             }
             else {
-                vechicle.SetName(name);
-                cout << "great, now that I know the name you intend to give your vechicle, Let me ask you few more question, What is the Model name ?" << endl;      
-                cin >> model;
-                if (model.empty()) {
-                    cout << "Huh... perhaps you forgot to give us your preferred model " << endl;
+                cout << "What name do you intend to give your vechicle ?" << endl;
+                cin >> name;
+                if (name.empty()) {
+                    cout << "Huh... perhaps you forgot to give your car a name ";
                 }
                 else {
-                    cout << "Cool you have an eye for good model, yah ! do you have a year in mind? "
-                        "if yes press y o your keyboard if o press n on your keyboard. "
-                        " Please note if you don't have a year in mind we will use a default one we have " << endl;
-                    cin >> year;
-                    if (year == 0) {
-                        cout << "Seems you did not specify a year or you specified 0 , we will use the default year for you not to worry" << endl;
+                    vechicle.SetName(name);
+                    cout << "great, now that I know the name you intend to give your vechicle, Let me ask you few more question, What is the Model name ?" << endl;
+                    cin >> model;
+                    if (model.empty()) {
+                        cout << "Huh... perhaps you forgot to give us your preferred model " << endl;
                     }
                     else {
-                        vechicle.SetYear(year);
+                        cout << "Cool you have an eye for good model, yah ! do you have a year in mind? "
+                            "if yes press y o your keyboard if o press n on your keyboard. "
+                            " Please note if you don't have a year in mind we will use a default one we have " << endl;
+                        cin >> year;
+                        if (year == 0) {
+                            cout << "Seems you did not specify a year or you specified 0 , we will use the default year for you not to worry" << endl;
+                        }
+                        else {
+                            vechicle.SetYear(year);
+                        }
+                        cout << "Next, we need to specify brand or manufacturer or company. nevermind anyone you preferred" << endl;
+                        cin >> company;
+                        if (company.empty()) {
+                            cout << "Huh... perhaps you forgot to give us your preferred company or brand or manufacturer" << endl;
+                        }
+                        else {
+                            vechicle.SetManufacturer(company);
+                        }
+                        cout << "Next, we need to We need to collect your engine type, gasoline, hybrid or electric" << endl;
+                        cin >> engineType;
+                        if (engineType.empty()) {
+                            cout << "Seems you did not specify a so we have set it as gasoline" << endl;
+                        }
+                        else {
+                            vechicle.SetFuelType(engineType);
+                        }
+                        cout << "Now, We assume that you might preferred a milage, if no mileage is set, "
+                            "then we will go with 0, which means you are getting a new Vechicle."
+                            << "Enter Mileage"
+                            << endl;
+                        cin >> mileage;
+                        if (mileage == 0) {
+                            cout << "Seems you did not specify mileage so we gave you a new one" << endl;
+                        }
+                        else {
+                            vechicle.SetMillage(mileage);
+                        }
+                        /* vechicle = Vechicle("Abiola", "Model-A", 1999, "Abiola Company", 3, "Gasoline", 0);*/
+                        cout << "We have just create your customised vechicle. Let's go ";
+                        cout << "You also prefered to name it " << vechicle.GetName() << " Model is "
+                            << vechicle.GetModel()
+                            << " Year is " << vechicle.GetYear() << " Manufacturer is "
+                            << vechicle.GetManufacturer() << " Wheel is " << vechicle.GetNumberOfWheels()
+                            << " Engine type : " << vechicle.GetFuelType()
+                            << " Mileage used is " << vechicle.GetMillage()
+                            << endl;
+                        vechicle.~Vechicle();
                     }
-                    cout << "Next, we need to specify brand or manufacturer or company. nevermind anyone you preferred" << endl;
-                    cin >> company;
-                    if (company.empty()) {
-                        cout << "Huh... perhaps you forgot to give us your preferred company or brand or manufacturer" << endl;
-                    }
-                    else {
-                        vechicle.SetManufacturer(company);
-                    }
-                    cout << "Next, we need to We need to collect your engine type, gasoline, hybrid or electric" << endl;
-                    cin >> engineType;
-                    if (engineType.empty()) {
-                        cout << "Seems you did not specify a so we have set it as gasoline" << endl;
-                    }
-                    else {
-                        vechicle.SetFuelType(engineType);
-                    }
-                    cout << "Now, We assume that you might preferred a milage, if no mileage is set, "
-                        "then we will go with 0, which means you are getting a new Vechicle." 
-                        << "Enter Mileage"
-                        << endl;
-                    cin >> mileage;
-                    if (mileage == 0) {
-                        cout << "Seems you did not specify mileage so we gave you a new one" << endl;
-                    }
-                    else {
-                        vechicle.SetMillage(mileage);
-                    }
-                   /* vechicle = Vechicle("Abiola", "Model-A", 1999, "Abiola Company", 3, "Gasoline", 0);*/
-                    cout << "We have just create your customised vechicle. Let's go ";
-                    cout << "You also prefered to name it " << vechicle.GetName() << " Model is "
-                        << vechicle.GetModel() 
-                        << " Year is "<< vechicle.GetYear() << " Manufacturer is " 
-                        << vechicle.GetManufacturer()<< " Wheel is "<<vechicle.GetNumberOfWheels()
-                        << " Engine type : "<< vechicle.GetFuelType()
-                        << " Mileage used is " << vechicle.GetMillage()
-                        << endl;
-                    vechicle.~Vechicle();
+
                 }
-           
+                break;
             }
             break;
         default:
@@ -135,7 +144,7 @@ int main()
 
 //Vechicle CreateVechicle(string name, string model, int year, string company, int wheels, string fuel, float milleage)
 //{
-//    return  Vechicle("Abiola", "Model-A", 1999, "Abiola Company", 3, "Gasoline", 0);
+//    return Vechicle("Abiola", "Model-A", 1999, "Abiola Company", 3, "Gasoline", 0);
 //}
 
 //template<typename ClassType>

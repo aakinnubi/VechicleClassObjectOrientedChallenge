@@ -35,7 +35,7 @@ public:
 		this->FuelType = FuelType;
 		this->Millage = Millage;
 	}
-	~Vechicle() {
+	virtual ~Vechicle() {
 
 	}
 
